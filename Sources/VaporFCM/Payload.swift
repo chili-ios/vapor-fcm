@@ -55,7 +55,6 @@ extension Payload {
 		case tag = "tag"
 		case color = "color"
 		case sound = "sound"
-        case data = "data"
 	}
 
 	internal func makeJson() -> [String: AnyHashable] {
@@ -68,7 +67,6 @@ extension Payload {
 		if let tag = tag { json[PayloadKey.tag.rawValue] = tag }
 		if let color = color { json[PayloadKey.color.rawValue] = color }
 		if let sound = sound { json[PayloadKey.sound.rawValue] = sound }
-        if let data = data { json[PayloadKey.data.rawValue] = data }
 
 		return json
 	}
