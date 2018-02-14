@@ -39,6 +39,9 @@ public struct Payload {
 	/// See the iOS Developer Library for more information.
 	public var sound: String?
 
+    /// iOS Only
+    public var data: [String: AnyHashable]?
+
 	public init() {}
 }
 
@@ -52,6 +55,7 @@ extension Payload {
 		case tag = "tag"
 		case color = "color"
 		case sound = "sound"
+        case data = "data"
 	}
 
 	internal func makeJson() -> [String: AnyHashable] {
@@ -64,6 +68,7 @@ extension Payload {
 		if let tag = tag { json[PayloadKey.tag.rawValue] = tag }
 		if let color = color { json[PayloadKey.color.rawValue] = color }
 		if let sound = sound { json[PayloadKey.sound.rawValue] = sound }
+        if let data = data { json[PayloadKey.data.rawValue] = data }
 
 		return json
 	}
@@ -84,6 +89,12 @@ extension Payload {
 		self.body = body
 		self.badge = badge
 	}
+
+    public init(title: String, body: String, data: [String: AnyHashable]) {
+        self.title = title
+        self.body = body
+        self.data = data
+    }
 }
 
 extension Payload: Equatable {
